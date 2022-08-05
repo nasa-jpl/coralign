@@ -4,7 +4,9 @@
 name: 'pycoralign'
 
 on:
-  pull_request: [ test_CI]
+  pull_request:
+    branches:
+      - test_CI
 
 jobs:
   build:
