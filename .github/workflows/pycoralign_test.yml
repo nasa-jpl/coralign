@@ -3,7 +3,8 @@
 #description: 'Generates pycoralign build, runs tests on pull requests of master branch.'
 name: 'pycoralign'
 
-on: pull_request
+on:
+  pull_request: [ test_CI]
 
 jobs:
   build:
