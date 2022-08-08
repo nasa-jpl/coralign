@@ -1,0 +1,81 @@
+# This is an example configuration file used for the cgisim_wrapper.py program
+# Below is an example for testing hlc
+
+# Required params
+cgi_mode: dicam
+cor_type: hlc
+bandpass: '1'
+polaxis: -10
+nd: 0
+star_spectrum: a0v
+star_vmag: 2.0
+
+param_struct:
+    # From "Use/exclude CGI components"
+    use_pupil_mask: 0
+    use_lyot_stop: 1
+    use_field_stop: 1
+
+    # From "Aberrations"
+    use_errors: 1
+    zindex: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    zval_m: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # From "DM Parameters"
+    use_dm1: 1
+    use_dm2: 1
+    dm1_m: 0 # overwrite this later with array
+    dm2_m: 0 # overwrite this later with array
+    dm_sampling_m: 0.9906e-3
+    dm1_xc_act: 23.5
+    dm1_yc_act: 23.5
+    dm2_xc_act: 23.5
+    dm2_yc_act: 23.5
+    dm1_xtilt_deg: 0
+    dm1_ytilt_deg: 5.7
+    dm1_ztilt_deg: 0
+    dm2_xtilt_deg: 0
+    dm2_ytilt_deg: 5.7
+    dm2_ztilt_deg: 0
+
+    # From "Focal plane mask parameters"
+    use_fpm: 1
+    fpm_x_offset_m: 0
+    fpm_y_offset_m: 0
+    fpm_z_shift_m: 0
+
+    # From "Source offsets"
+    source_x_offset_mas: 0
+    source_y_offset_mas: 0
+    fsm_x_offset_mas: 0
+    fsm_y_offset_mas: 0
+
+    # From "Component offsets"
+    cgi_x_shift_m: 0
+    cgi_y_shift_m: 0
+    focm_z_shift_m: 0
+    field_stop_x_offset_m: 0
+    field_stop_y_offset_m: 0
+    lyot_x_shift_m: 0
+    lyot_y_shift_m: 0
+    mask_x_shift_m: 0
+    mask_y_shift_m: 0
+  
+    # Phase retrieval parameters
+    pinhole_diam_m: 0
+    use_pupil_lens: 0
+    defocus: 0 # waves P-V @ 550 nm
+
+ccd:
+    exptime: 1
+    gain: 1
+    full_well_serial: 100000
+    full_well: 60000
+    dark_rate: 0
+    cic_noise: 0
+    read_noise: 0
+    bias: 0
+    cr_rate: 0
+    apply_smear: True
+
+
