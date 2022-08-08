@@ -1,0 +1,25 @@
+# Number of iterations to perform for binary_dilation() and binary_erosion() 
+# from scipy.ndimage.morphology. This is in the step that fills in the struts
+# of the nominal pupil so that the ellipse fitting can run much faster than
+# if the struts are left as-is.
+nIterDilateErode: 0
+
+# Factor by which to pad the pupil image before dilating and eroding.
+# Needs to be large enough such that the dilation and erosion do not
+# hit the edge of the array and fail.
+padFactor: 1.1
+
+# Keyword arguments passed directly to skimage.feature.canny() for finding
+# the edges of the pupil
+canny_inputs:
+  sigma: 1.0
+  low_threshold: 0.55
+  high_threshold: 0.8
+
+# Keyword arguments passed directly to skimage.transform.hough_ellipse().
+# Note that min_size and max_size are radial bounds in units of pixels.
+hough_ellipse_inputs:
+  accuracy: 5 #5 #20
+  threshold: 20 #50 #200
+  min_size: 10
+  max_size: 30
