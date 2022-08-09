@@ -1,3 +1,5 @@
+![Unit Tests](https://github.com/nasa-jpl/coralign/actions/workflows/pycoralign_test.yml/badge.svg)
+
 # coralign
 Package for the alignment and calibration of coronagraph optics
 
