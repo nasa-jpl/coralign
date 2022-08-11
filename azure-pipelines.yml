@@ -27,11 +27,11 @@ trigger:
   
 ########### Microsoft-Hosted Agent ###########
 pool:
- vmimage: Ubuntu 16.04
+  vmimage: Ubuntu 16.04
 steps:
- - task: InstallMATLAB@0
-   inputs:
-     release: R2020a
+  - task: InstallMATLAB@0
+    inputs:
+      release: R2020a
 ##############################################
   
   - task: RunMATLABTests@0
