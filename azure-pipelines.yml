@@ -24,21 +24,21 @@ trigger:
 #      version: 2.2.203
 #      installationPath: $(Agent.ToolsDirectory)/dotnet
 ##########################################
-  
+
 ########### Microsoft-Hosted Agent ###########
 pool:
-  vmimage: Ubuntu 16.04
+  vmimage: ubuntu-latest
 steps:
   - task: InstallMATLAB@0
     inputs:
-      release: R2020a
+      release: R2021a
 ##############################################
   
   - task: RunMATLABTests@0
     inputs:
       codeCoverageCobertura: 'code-coverage/coverage.xml'
-      selectByFolder: tests  # testing/testarchive;testing/tests_long
-      sourceFolder: 'lib:models:setup'
+      selectByFolder: 'tests'
+      sourceFolder: 'matlab'
       testResultsJUnit: 'test-results/results.xml'
   - task: PublishTestResults@1
     condition: succeededOrFailed()
