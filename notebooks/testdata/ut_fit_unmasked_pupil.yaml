@@ -1,0 +1,74 @@
+# fnMaskRefHighRes is the filename of the high-res reference unmasked pupil
+fnMaskRefHighRes: 'testdata/pupil_template_D1000.00pixels.fits'
+
+# diamHighRes is the diameter of the high-res reference unmasked pupil stored
+# in a file  
+diamHighRes: 1000.0
+
+# The amount to rotate the reference pupil before computing the clocking of
+# the measured pupil
+rotRef: 0
+
+# Whether to left-right flip the reference pupil before computing the
+# clocking of the measured pupil
+flipxRef: False
+
+# The factor to zero pad the reference pupil dimensions before computing
+# the clocking of the measured pupil
+padFacRef: 1.2
+
+
+# Number of iterations to run pf_util.compute_lateral_offsets()
+nIterOffsets: 2
+
+# nClock is the number of clocking values to check when determining pupil or
+# mask clocking. The search is centered on zero.
+nClock: 7
+
+# When computing clocking, the nClock values checked span a range covering
+# +/- clockDegMax. Units of degrees. It is better for this value to exceed the
+# actual expected range of values (only a few milliradians) in order to get a
+# better quadratic fit to the nClock data points.
+clockDegMax: 2.5
+
+# Number of pixels (width and height) across the array to pad the pupil or mask
+# array before performing an FFT. 
+nPadFFT: 1024
+
+# Number of pixels to crop down the FFT'ed pupil or pupil mask. Only the
+# brightest pixels on a linear scale are used, so not many points across are
+# needed. Use an odd number of points in order not to bias the quadratic fit to
+# one side. This value changes if nPadFFT changes.
+nFocusCrop: 11
+
+# For the tip/tilt phase comparison in Fourier space, the step size in the grid
+# is chosen based on the equivalent number of pixels moved in pupil space,
+# which is dPixel.
+dPixel: 0.2
+
+# The pupil shear is calculated by comparing the tip/tilt phase ramps in
+# Fourier space. nPhaseSteps is the number of steps across in a square grid to
+# the model against the FFT'ed measured pupil or mask. Choose an odd number to
+# avoid biasing the estimate in one direction.
+nPhaseSteps: 100
+
+# When comparing normalized pupil or mask arrays to see if pixels "match" or
+# not, a pixel is deemed to match if the values are within |deltaAmpMax| of
+# each other. Choosing a larger value helps overcome noise, amplitude errors,
+# and poor imaging quality. The value has to be less than 1 since the pupil or\
+# mask arrays to compare are normalized.
+deltaAmpMax: 0.5
+
+# The measured pupil/mask array and the simulated reference pupil/mask may have
+# different normalizations. percentileForImageNorm is the percentile (of the
+# values recognized by AMPTHRESH to be in the pupil region) at which the
+# normalization value is chosen for the specified array.
+percentileForImageNorm: 50
+
+# The high-res reference pupil or mask might not have any zero padding in the
+# file. Some zero padding is necessary to avoid disastrous artifacts introduced
+# when downsampling/rotating/translating the pupil or mask. The amount of zero
+# padding to add to the array in total is zeroPaddingForHighResMask. For
+# example if zeroPaddingForHighResMask = 24 and the starting array is
+# 1000x1000, then the padded array is 1024x1024.
+zeroPaddingForHighResMask: 24
