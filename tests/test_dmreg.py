@@ -14,6 +14,8 @@ from coralign.util.loadyaml import loadyaml
 from coralign.util.pad_crop import pad_crop as inin
 from coralign.util.shapes import simple_pupil
 
+LOCALPATH = os.path.dirname(os.path.abspath(__file__))
+
 
 class TestSoftwareMask(unittest.TestCase):
     """Test dm_software_mask."""
@@ -122,8 +124,6 @@ class TestTranslationRotation(unittest.TestCase):
     """Test calc_translation_clocking."""
 
     def setUp(self):
-        localpath = os.path.dirname(os.path.abspath(__file__))
-
         self.dm_fn = 'testdata/ut_dm_for_dmreg.yaml'
         dm = loadyaml(self.dm_fn)
         nact = dm['dms']['DM1']['registration']['nact']
@@ -134,8 +134,8 @@ class TestTranslationRotation(unittest.TestCase):
         ppact_d = dm['dms']['DM1']['registration']['ppact_d']
         flipx = dm['dms']['DM1']['registration']['flipx']
         gainfn = dm['dms']['DM1']['voltages']['gainfn']
-        inf_func = fits.getdata(os.path.join(localpath, inffn))
-        gainmap = fits.getdata(os.path.join(localpath, gainfn))
+        inf_func = fits.getdata(os.path.join(LOCALPATH, inffn))
+        gainmap = fits.getdata(os.path.join(LOCALPATH, gainfn))
         
         self.fn_fit_params = 'testdata/ut_trans_rot_settings.yaml'
         self.xOffsetPupil = 90
@@ -168,7 +168,7 @@ class TestTranslationRotation(unittest.TestCase):
                              nSubpixels=100)
 
         # This is the same DM command used to make amp1 and ph1: a 2-striped +
-        fn_deltaV = os.path.join(localpath, 'testdata',
+        fn_deltaV = os.path.join(LOCALPATH, 'testdata',
                                 'delta_DM_V_for_trans_rot_calib.fits')
         self.deltaV = fits.getdata(fn_deltaV)
         dmrad = volts_to_dmh(gainmap, self.deltaV, self.lam)
@@ -193,7 +193,7 @@ class TestTranslationRotation(unittest.TestCase):
             self.amp0, self.ph0, self.amp1, self.ph1, self.usablePixelMap,
             self.whichDM, self.deltaV,
             self.xOffsetPupil, self.yOffsetPupil, self.dm_fn, self.fn_fit_params, self.lam,
-            data_path='./',
+            data_path=LOCALPATH,
         )
 
         self.assertTrue(np.abs(self.xOffsetTrue - xOffsetEst) < tol_offset)
@@ -297,8 +297,6 @@ class TestScale(unittest.TestCase):
     """Test calc_scale."""
 
     def setUp(self):
-        localpath = os.path.dirname(os.path.abspath(__file__))
-
         self.dm_fn = 'testdata/ut_dm_for_dmreg.yaml'
         dm = loadyaml(self.dm_fn)
         nact = dm['dms']['DM1']['registration']['nact']
@@ -309,8 +307,8 @@ class TestScale(unittest.TestCase):
         ppact_d = dm['dms']['DM1']['registration']['ppact_d']
         flipx = dm['dms']['DM1']['registration']['flipx']
         gainfn = dm['dms']['DM1']['voltages']['gainfn']
-        inf_func = fits.getdata(os.path.join(localpath, inffn))
-        gainmap = fits.getdata(os.path.join(localpath, gainfn))
+        inf_func = fits.getdata(os.path.join(LOCALPATH, inffn))
+        gainmap = fits.getdata(os.path.join(LOCALPATH, gainfn))
         
         self.fn_fit_params = 'testdata/ut_scale_settings.yaml'
         xOffsetPupil = 90
@@ -341,7 +339,7 @@ class TestScale(unittest.TestCase):
                              nSubpixels=100)       
 
         # Same DM command used to make amp1 and ph1: a square outline
-        fn_deltaV = os.path.join(localpath, 'testdata',
+        fn_deltaV = os.path.join(LOCALPATH, 'testdata',
                                 'delta_DM_V_for_scale_calib.fits')
         self.deltaV = fits.getdata(fn_deltaV)
         dmrad = volts_to_dmh(gainmap, self.deltaV, self.lam)
@@ -365,7 +363,7 @@ class TestScale(unittest.TestCase):
             self.amp0, self.ph0, self.amp1, self.ph1, self.usablePixelMap,
             self.whichDM, self.deltaV, self.dm_fn, self.fn_fit_params,
             self.lam, self.xOffsetTrue, self.yOffsetTrue, self.clockingTrue,
-            data_path='./',
+            data_path=LOCALPATH,
         )
 
         print('ppact_cx_est = %.4f' % ppact_cx_est)
