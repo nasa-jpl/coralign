@@ -1,0 +1,8 @@
+# range of plate scales to search about expected value [fraction]
+ps_wid: 0.2
+# number of plate scale trials to attempt
+n_trials: 10
+# percentile value for normalizing the recorded and simulated images
+percentile_val: 99.999
+# step size for interpolated plate scale as a function of RMS residuals
+interp_step_size: 0.0001

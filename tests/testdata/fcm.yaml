@@ -1,0 +1,8 @@
+# focusPerStroke : float
+#     FCM conversion factor.
+#     Units of meters RMS focus per micron of FCM stroke.
+focusPerStroke: 4.59e-10
+# strokePerStep : float
+#     FCM conversion factor.
+#     Units of microns of FCM stroke per coarse FCM step.
+strokePerStep: 5.3

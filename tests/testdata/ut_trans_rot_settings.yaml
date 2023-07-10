@@ -1,0 +1,48 @@
+# Parameters for performing the translation and rotation fits
+# during DM registration with DMREG.
+
+# deltazPupilToDM2 : float
+#     Axial propagation distance from phase retrieval pupil to DM2.
+#     Units of meters.
+#deltazPupilToDM2 : 1.000
+
+# nIterBoth : float
+#     Number of times to perform the loop over translation then clocking fits.
+nIterBoth : 2
+
+# offsetMax : float
+#     Max +/- distance from pupil center to search for the DM grid center.
+#     Must be larger than the largest possible offset or else the quadratic
+#     fitting function will perform poorly. Units of ExCAM pixels. 
+offsetMax : 10.0
+
+# nOffset : int
+#     Number of translation values to evaluate between -offsetMax
+#     and +offsetMax, inclusive.
+nOffset : 7
+
+# nIterOffset : int
+#     Number of times to iterate the translation fit. Each new iteration is
+#     centered about the previous best estimate.
+nIterOffset : 3
+
+# clockMaxDeg : float
+#     Max +/- clocking value to evaluate. Must be larger than the largest
+#     possible clocking value or else the quadratic fitting function will
+#     perform poorly. Units of degrees.
+clockMaxDeg : 3.0
+
+# nClock : int
+#     Number of clocking values to evaluate between -clockMaxDeg
+#     and +clockMaxDeg, inclusive.
+nClock : 7
+
+# nIterClock : int
+#     Number of times to iterate the rotation fit. Each new iteration is
+#     centered about the previous best estimate.
+nIterClock : 5
+
+# shrinkFac : float
+#     Factor by which to change clockMaxDeg and offsetMax after each iteration
+#     of the fit. Must be >0.0 and <= 1.0.
+shrinkFac : 0.8

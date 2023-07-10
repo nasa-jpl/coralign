@@ -1,0 +1,51 @@
+# shape of the output array
+nRows: 500.5  # intentionally wrong
+nCols: 600
+
+# Shapes to OR together to form the dark hole mask are in the
+# dictionary named shapes. Any number of shapes may be combined.
+# Allowed shape values are: 
+#   rectangle, annulus, annular_sector, bowtie
+# Each shape has its own set of required dictionary keys,
+# as listed below. The name of each nested dictionary for
+# an additional shape isn't actually used and simply has to
+# be unique.
+# Distances are in units of pixels, and angles are in degrees.
+#
+# rectangle
+#    xOffset (float)
+#    yOffset (float)
+#    width (positive float)
+#    height (positive float)
+#
+# annulus
+#    xOffset (float)
+#    yOffset (float)
+#    radiusInner (nonnegative float)
+#    radiusOuter (nonnegative float)
+#
+# annular_sector
+#    xOffset (float)
+#    yOffset (float)
+#    radiusInner (nonnegative float)
+#    radiusOuter (nonnegative float)
+#    openingAngle (positive float)
+#    clocking (float)
+#
+# bowtie
+#    xOffset (float)
+#    yOffset (float)
+#    radiusInner (nonnegative float)
+#    radiusOuter (nonnegative float)
+#    openingAngle (positive float)
+#    clocking (float)
+#
+shapes:
+  anyUniqueName0:  
+    shape: 'rectangle'
+    xOffset: 150.0
+    yOffset: -126.0
+    width: 21.0
+    height: 50.1
+
+    
