@@ -125,7 +125,7 @@ class TestTranslationRotation(unittest.TestCase):
 
     def setUp(self):
         self.dm_fn = 'testdata/ut_dm_for_dmreg.yaml'
-        dm = loadyaml(self.dm_fn)
+        dm = loadyaml(os.path.join(LOCALPATH, self.dm_fn))
         nact = dm['dms']['DM1']['registration']['nact']
         ppact_d = dm['dms']['DM1']['registration']['ppact_d']
         inffn = dm['dms']['DM1']['registration']['inffn']
@@ -298,7 +298,7 @@ class TestScale(unittest.TestCase):
 
     def setUp(self):
         self.dm_fn = 'testdata/ut_dm_for_dmreg.yaml'
-        dm = loadyaml(self.dm_fn)
+        dm = loadyaml(os.path.join(LOCALPATH, self.dm_fn))
         nact = dm['dms']['DM1']['registration']['nact']
         ppact_d = dm['dms']['DM1']['registration']['ppact_d']
         inffn = dm['dms']['DM1']['registration']['inffn']
