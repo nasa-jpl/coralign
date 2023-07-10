@@ -1,0 +1,37 @@
+# FITTING PARAMETERS IN FOURIER SPACE
+#
+# Number of pixels (width and height) across the array to pad the pupil or mask
+# array before performing an FFT. 
+nPadFFT: 1024
+# Number of pixels to crop down the FFT'ed pupil or pupil mask. Only the
+# brightest pixels on a linear scale are used, so not many points across are
+# needed. Use an odd number of points in order not to bias the quadratic fit to
+# one side. This value changes if nPadFFT changes.
+nFocusCrop: 21
+# The pupil shear is calculated by comparing the tip/tilt phase ramps in
+# Fourier space. nPhaseSteps is the number of steps across in a square grid to
+# the model against the FFT'ed measured pupil or mask. Choose an odd number to
+# avoid biasing the estimate in one direction.
+nPhaseSteps: 41
+# For the tip/tilt phase comparison in Fourier space, the step size in the grid
+# is chosen based on the equivalent number of pixels moved in pupil space,
+# which is dPixel.
+dPixel: 0.5
+# The pupil/mask shear estimation has two loops, an inner and outer one. In the
+# outer loop, the simulated reference pupil/mask is regenerated from the
+# high-res reference file in each iteration based on the latest shear estimate.
+# This iterated approach improves accuracy. nIterOuterLoop is the number of
+# outer loop iterations.
+nIterOuterLoop: 5
+# The pupil/mask shear estimation has two loops, an inner and outer one. In the
+# inner loop, the same simulated reference pupil/mask is used but the center of
+# the grid search over phases to compare is shifted to be centered on the last
+# best estimate. This iterated approach improves accuracy. nIterInnerLoop is
+# the number of inner loop iterations. There is usually no benefit to more than
+# two of these iterations.
+nIterInnerLoop: 2
+# The measured pupil/mask array and the simulated reference pupil/mask may have
+# different normalizations. percentileForImageNorm is the percentile (of the
+# values recognized by AMPTHRESH to be in the pupil region) at which the
+# normalization value is chosen for the specified array.
+percentileForImageNorm: 50

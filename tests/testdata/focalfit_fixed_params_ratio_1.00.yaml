@@ -1,0 +1,4 @@
+#targetRatio : float
+#    Desired final ratio of summed intensities along the given axis.
+#    Unitless.
+targetRatio : 1.0

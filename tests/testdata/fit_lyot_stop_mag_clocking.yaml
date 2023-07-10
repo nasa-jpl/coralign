@@ -1,0 +1,35 @@
+# Parameters for performing the fit of magnification and clocking at the
+# lyot plane as seen at the science detector.
+# Used by coralign.pupil.maskfit.fit_lyot_stop_mag_clocking().
+
+# Parameters for fitting magnification and clocking at LSAM
+clockMaxDeg: 2.0  # float, max +/- clocking error checked [degrees]
+nClock: 11 # int, number of clocking values checked 
+
+deltaAmpMax : 0.5 # float, Maximum allowed amplitude difference allowed
+# between a measured mask and a reference mask for that pixel to be
+# counted as matching in value.
+
+# Pixel counts
+diamPupil: 300.0  # float, nominal/expected number of pixels across the
+                  # major beam diameter
+
+# Parameters for performing the tune-up magnification fit
+
+#magShrinkFac : float
+#    Factor by which to shrink deltaMag each loop iteration.
+#    Must be > 0 and < 1.
+magShrinkFac: 0.5
+
+#deltaMag : float
+#    +/- amount of delta magnification to use in a line search of
+#    magnification values. Must be > 0.
+deltaMag: 0.05
+
+#nMag : int
+#    Number of magnification values to use in the line search.
+nMag: 11
+
+#nIterMag : int
+#    Number of iterations over which to refine the magnification estimate.
+nIterMag: 3

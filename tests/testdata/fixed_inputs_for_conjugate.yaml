@@ -1,0 +1,17 @@
+# maxNollZern : int
+#     The maximum Noll Zernike mode to include as part of the low-
+#     order modes to split between DMs 1 and 2.
+maxNollZern: 11
+# nIterSmooth : int
+#     Number of iterations to call the smoothing function to fill in the gaps
+#     in the pupil WFE map.
+nIterSmooth: 100
+# nBin : int
+#     Number of bins to use in AMPTHRESH when thresholding the amplitude map
+#     from phase retrieval.
+nBin: 21
+# arrayExtFac : float
+#     Factor multiplied by the beam size to create the DM surface's array
+#     size. Set to larger than 1 to make sure the beam is not clipped if it
+#     centered on the array.
+arrayExtFac: 1.4
