@@ -7,6 +7,14 @@
 # coralign
 Package for the alignment and calibration of coronagraph optics
 
+## Examples
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://drive.google.com/drive/folders/1cqswaQJGbJOl_Nq6G_xX4XubCg4tdbF-?usp=sharing)
+- [center_of_energy_wrapper_focal_plane](https://colab.research.google.com/drive/1bVkfKrQTRz1beJEg1LKnr-r0M1wAEn4-?usp=sharing)
+- [center_of_energy_wrapper_pupil_plane](https://drive.google.com/file/d/1EFH0VRfDdWkQQ4YM016i4MtOds83KXfE/view?usp=sharing)
+- [pupilfit_wrapper](https://drive.google.com/file/d/1IxoRipK3RKg-GOVZQHOcm_L7EndVMAtg/view?usp=sharing)
+- [quad_energy_balance_wrapper_focal_plane](https://drive.google.com/file/d/1vuT69xckpbVGH8ehqCUGDQWCQNO3rWoC/view?usp=sharing)
+- [quad_energy_balance_wrapper_pupil_plane](https://drive.google.com/file/d/1SE_RVtCBigOlhoy4zLu6_MXgLKSbjycM/view?usp=sharing)
+
 ## Python Package Dependencies
 ### For general functionality:
 1. numpy
