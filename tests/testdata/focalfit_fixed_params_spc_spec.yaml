@@ -1,0 +1,74 @@
+#spotSepPix : float
+#    Expected separation of the satellite spots from the star. Used as the
+#    separation for the center of the region of interest. Units of pixels.
+#    Compute beforehand as sep in lambda/D and multiply by pix per lambda/D.
+#    Note that this value will change from Phase B to Phase C because the
+#    OWA of the bowtie will grow by 0.4 lambda/D for the final design.
+spotSepPix: 25.4
+#spotRotDeg : float
+#    Expected rotations of the satellite spot pairs around the star will
+#    be +/-spotRotNomDeg from the x-axis. Used as the clocking for the
+#    centers of the regions of interest. Units of degrees.
+spotRotDeg: 30.0
+#spotExtraRotDeg : float
+#    Extra clocking applied to make the regions of interest land on the
+#    spot pairs in the image. Might be needed to account for clocking
+#    among the DMs, coronagraph masks, and/or detector pixel grid. Can
+#    also be set to 90 to have the ROIs be clustered about the y-axis.
+#    Units of degrees. Must be a real positive scalar.
+spotExtraRotDeg: 0.0
+#roiRadiusPix : float
+#    Radius of each region of interest used when summing the intensity of a
+#    satellite spot. Units of pixels.
+roiRadiusPix: 11.7
+#nSubpixels : int
+#    Number of subpixels across used to make edge values of the region-of-
+#    interest mask. The value of the edge pixels in the ROI is the mean of
+#    all the subpixel values.
+nSubpixels: 100
+#maxStep : float
+#    Maximum allowed estimate of the star's offset from the mask. This max
+#    exists because after a certain offset one spot gets completely blocked
+#    and the true offset is unknown. This max value is chosen to be equal to
+#    or less than the offset value at which the spot gets completely
+#    blocked. Units of pixels.
+maxStep: 3.0
+#fitCoefPow1x : float
+#    Based on simulation, there is a quadratic change in the summed
+#    ROI ratio versus stellar offset from the bowie mask. fitCoefPow1
+#    is the coefficient of the linear term in that polynomial fit. Must be a
+#    positive scalar value to guarantee that the offset estimate has the
+#    correct sign. This value is for the x-axis.
+fitCoefPow1x: 0.34
+#fitCoefPow2x : float
+#    Based on simulation, there is a quadratic change in the summed
+#    ROI ratio versus stellar offset from the bowtie mask. fitCoefPow2
+#    is the coefficient of the quadratic term in that polynomial fit. Must
+#    be positive to avoid divide by zero and to avoid choosing the wrong
+#    answer from the quadratic formula. This value is for the x-axis.
+fitCoefPow2x: 0.17
+#
+#fitCoefPow1y : float
+#    Based on simulation, there is a quadratic change in the summed
+#    ROI ratio versus stellar offset from the bowie mask. fitCoefPow1
+#    is the coefficient of the linear term in that polynomial fit. Must be a
+#    positive scalar value to guarantee that the offset estimate has the
+#    correct sign. This value is for the y-axis.
+fitCoefPow1y: 0.95
+#fitCoefPow2y : float
+#    Based on simulation, there is a quadratic change in the summed
+#    ROI ratio versus stellar offset from the bowtie mask. fitCoefPow2
+#    is the coefficient of the quadratic term in that polynomial fit. Must
+#    be positive to avoid divide by zero and to avoid choosing the wrong
+#    answer from the quadratic formula. This value is for the y-axis.
+fitCoefPow2y: 0.3
+
+#xRatioTarget : float
+#    Desired final ratio of summed intensities along the x-axis.
+#    Unitless. Default value is 1.0.
+xRatioTarget : 1
+
+#yRatioTarget : float
+#    Desired final ratio of summed intensities along the y-axis.
+#    Unitless. Default value is 1.0.
+yRatioTarget : 1

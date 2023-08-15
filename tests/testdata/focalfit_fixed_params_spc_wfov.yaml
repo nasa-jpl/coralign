@@ -1,0 +1,44 @@
+#spotSepPix : float
+#    Expected separation of the satellite spots from the star. Used as the
+#    separation for the center of the region of interest. Units of pixels.
+#    Compute beforehand as sep in lambda/D and multiply by pix per lambda/D.
+spotSepPix: 17.82
+#roiRadiusPix : float
+#    Radius of each region of interest used when summing the intensity of a
+#    satellite spot. Units of pixels.
+roiRadiusPix: 5.5
+#nSubpixels : int
+#    Number of subpixels across used to make edge values of the region-of-
+#    interest mask. The value of the edge pixels in the ROI is the mean of
+#    all the subpixel values.
+nSubpixels: 100
+#maxStep : float
+#    Maximum allowed estimate of the star's offset from the mask. This max
+#    exists because after a certain offset one spot gets completely blocked
+#    and the true offset is unknown. This max value is chosen to be equal to
+#    or less than the offset value at which the spot gets completely
+#    blocked. Units of pixels.
+maxStep: 3.0
+#fitCoefPow1 : float
+#    Based on simulation, there is either a linear or quadratic change in
+#    the summed ROI ratio versus stellar offset from the mask. fitCoefPow1
+#    is the coefficient of the linear term in that polynomial fit. Must be a
+#    positive scalar value to guarantee that the offset estimate has the
+#    correct sign.
+fitCoefPow1: 1.0
+#fitCoefPow2 : float
+#    Based on simulation, there is either a linear or quadratic change in
+#    the summed ROI ratio versus stellar offset from the mask. fitCoefPow2
+#    is the coefficient of the quadratic term in that polynomial fit. Must
+#    be positive to avoid divide by zero and to avoid choosing the wrong
+#    answer from the quadratic formula.
+fitCoefPow2: 1.6
+#powerOfFit : int, {1, 2}
+#    Whether to perform a linear or quadratic fit. 1 for linear or 2 for
+#    quadratic. If 1, then the value of fitCoefPow2 is ignored.
+powerOfFit: 2
+# maskIsInsideSpots : int {0, 1}
+#    Whether the mask doing the cutting of the spots is inside or outside the 
+#    spots.  An NFOV FPM has the mask on the inside (=1); an NFOV field
+#    stop has the mask on the outside (=0).
+maskIsInsideSpots: 1

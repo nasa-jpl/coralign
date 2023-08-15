@@ -1,0 +1,45 @@
+dms:
+  DM1:
+    pitch: 0.001
+    registration:
+      dx: 20
+      dy: -11
+      inffn: testdata/ut_influence_dm5v2_inffix.fits
+      nact: 48
+      ppact_cx: 8.3
+      ppact_cy: 8.5
+      ppact_d: 10
+      thact: -0.5
+      flipx: false
+    voltages:
+      gainfn: testdata/ut_DM1_gainmap.fits
+      vmax: 100
+      vmin: 0
+      vneighbor: 30.
+      vcorner: 30.
+      vquant: 0.001678466796875
+      tiefn: testdata/ut_DM1_tiemap_all_zeros.fits
+      flatfn: testdata/ut_DM1_flatmap.fits
+    z: 0.0
+  DM2:
+    pitch: 0.001
+    registration:
+      dx: 20
+      dy: -10
+      inffn: testdata/ut_influence_dm5v2_inffix.fits
+      nact: 48
+      ppact_cx: 8.3
+      ppact_cy: 8.5
+      ppact_d: 10
+      thact: 0.5
+      flipx: false
+    voltages:
+      gainfn: testdata/ut_DM2_gainmap.fits
+      vmax: 100
+      vmin: 0
+      vneighbor: 30.
+      vcorner: 30.
+      vquant: 0.001678466796875
+      tiefn: testdata/ut_DM2_tiemap_all_zeros.fits
+      flatfn: testdata/ut_DM2_flatmap.fits
+    z: 1.0

@@ -1,0 +1,7 @@
+# Details about the high-resolution mask reference
+#
+# Diameter of the high-res reference mask stored in a file  
+diamHighResMaskRef: 1000 
+
+# Filename of the high-res reference mask
+fnMaskRefHighRes: 'maskRefHighResDummy.fits'

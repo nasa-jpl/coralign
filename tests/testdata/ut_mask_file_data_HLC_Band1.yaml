@@ -1,0 +1,43 @@
+# Parameters needed to generate the complex-valued transmission of an HLC
+# occulter from a stored FITS file.
+# Used by maskgen.gen_hlc_occulter().
+
+# filename of PMGI height map. str.
+fnPMGI: 'testdata/ut_hlc_pmgi_fnum32.5676970504_lam5.75e-07_dx1.5e-06.fits'
+#fnPMGI: 'maskdesigns/HLC_20190210b_NFOV/run432_theta6.69imthicks_PMGIfnum32.5676970504_lam5.75e-07_requestdx5e-07.fits'
+
+# wavelength assumed in occulter design file [meters]. float.
+lam0: 575.0e-9
+
+# Radius of occulter in lambda_central/D. float.
+rOccLamD: 2.80
+
+# titanium height [meters]. float.
+hTi: 3.0e-9
+
+# nickel height [meters]. float.
+hNi: 1.09176961403441e-07
+
+# pixel width and height in occulter design file [meters]
+dx: 1.5e-6
+# dx: 5.0e-7
+
+# F number assumed in occulter design file. Not the f-number in the CGI. float.
+FN: 32.5676970504
+
+# Polarization at which to generate the FPM.
+# 0 for s, 1 for p, 2 for mean of s and p
+polState: 2
+
+# reference height away from substrate to use as the zero point for
+# phase calculation [waves]. float
+hRefCoef: 4  # waves
+
+# Factor by which to pad the starting array. There must be some room between
+# the mask and the edge of the array to avoid numerical artifacts. float.
+padFac: 1.2
+
+# Minimum factor of array oversizing compared to the occulter. Want oversized
+# to catch all of the ringing from the Fourier downsampling. float.
+minOversizeFacForFFT: 8
+

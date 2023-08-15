@@ -1,0 +1,42 @@
+#spotSepPix : float
+#    Expected separation of the satellite spots from the star. Used as the
+#    separation for the center of the region of interest. Units of pixels.
+#    Compute beforehand as sep in lambda/D and multiply by pix per lambda/D.
+#    6.0*(51.46*0.730/13)
+spotSepPix: 17.34
+
+#roiRadiusPix : float
+#    Radius of each region of interest used when summing the intensity of a
+#    satellite spot. Units of pixels.
+roiRadiusPix: 6.0
+
+#probeRotVecDeg : array_like
+#    1-D array of how many degrees counterclockwise from the x-axis to rotate
+#    the regions of interest used when summing the satellite spots. Note that
+#    a pair of satellite spots is given by just one value. For example, for a
+#    single pair of satellite spots along the x-axis use [0, ] and not 
+#    [0, 180]. And for a plus-shaped layout of spots, use [0, 90].
+probeRotVecDeg: [0, ]
+
+#nSubpixels : int
+#    Number of subpixels across used to make edge values of the region-of-
+#    interest mask. The value of the edge pixels in the ROI is the mean of
+#    all the subpixel values.
+nSubpixels: 100
+
+#nSteps : int
+#    Number of points used along each direction for the grid search.
+#    Odd numbers are better to provide symmetry of values when the array is
+#    truly centered.
+nSteps: 9
+
+#stepSize : float
+#    The step size used in the grid search. Units of pixels.
+stepSize: 1.0
+
+#nIter : int
+#    Number of iterations in the loop that hones in on the stellar center
+#    location.
+nIter: 6
+
+

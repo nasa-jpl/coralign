@@ -1,0 +1,17 @@
+# Calibration data used to generate HLC FPM representations
+# for the HOWFS/C model.
+
+# ppl : float
+#     Resolution at which to generate the FPM.
+#     Units of pixels per lambda_central/D.
+ppl: 3.7093023255813953
+
+# rotDeg : float
+#     Counterclockwise rotation of the occulter compared to the reference file.
+#     Units of Degrees.
+rotDeg: 0.0
+
+# aoi : float
+#     Angle of incidence of the beam at the focal plane masks.
+#     Units of Degrees.
+aoi: 0.5

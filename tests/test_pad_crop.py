@@ -1,12 +1,11 @@
 """
 Unit tests for pad_crop.py
 """
-
+import numpy as np
 import unittest
 
-import numpy as np
+from coralign.util.pad_crop import pad_crop, offcenter_crop
 
-from coralign.util.pad_crop import pad_crop
 
 class TestPadCrop(unittest.TestCase):
     """
@@ -217,6 +216,131 @@ class TestPadCrop(unittest.TestCase):
             pass
         pass
 
+
+class TestOffcenterCrop(unittest.TestCase):
+    """Test suite for offcenter_crop()."""
+
+    def setUp(self):
+        """Define reused variables."""
+        self.image = np.ones((15, 34))
+        self.pixel_count_across = 20
+        self.output_center_x = 4
+        self.output_center_y = 3
+
+    def test_offcenter_crop_input_0(self):
+        """Test bad inputs to offcenter_crop."""
+        for badVal in (-1, 0, 1, 1.5, (1, 2), np.ones((3, 3, 3)), 'asdf'):
+            with self.assertRaises(TypeError):
+                offcenter_crop(badVal,
+                               self.pixel_count_across,
+                               self.output_center_x,
+                               self.output_center_y)
+
+    def test_offcenter_crop_input_1(self):
+        """Test bad inputs to offcenter_crop."""
+        for badVal in (-1, 0, 1.5, (1, 2), np.ones((3, 3, 3)), 'asdf'):
+            with self.assertRaises(TypeError):
+                offcenter_crop(self.image,
+                               badVal,
+                               self.output_center_x,
+                               self.output_center_y)
+
+    def test_offcenter_crop_input_2(self):
+        """Test bad inputs to offcenter_crop."""
+        for badVal in (1j, (1, 2), np.ones((3, 3, 3)), 'asdf'):
+            with self.assertRaises(TypeError):
+                offcenter_crop(self.image,
+                               self.pixel_count_across,
+                               badVal,
+                               self.output_center_y)
+
+    def test_offcenter_crop_input_3(self):
+        """Test bad inputs to offcenter_crop."""
+        for badVal in (1j, (1, 2), np.ones((3, 3, 3)), 'asdf'):
+            with self.assertRaises(TypeError):
+                offcenter_crop(self.image,
+                               self.pixel_count_across,
+                               self.output_center_x,
+                               badVal)
+
+    def test_odd_in_odd_out_stay_centered(self):
+        """Test a particular usage case."""
+        image = np.zeros((5, 5))
+        image[2::, 2::] = 1
+        pupil_center_x = 3
+        pupil_center_y = 3
+        pixel_count_across = 7
+        cropped_image = offcenter_crop(image, pixel_count_across,
+                                       pupil_center_y, pupil_center_x)
+        answer = pad_crop(np.ones((3, 3)), (7, 7))
+        self.assertTrue(np.sum(np.abs(cropped_image - answer)) == 0)
+
+    def test_mixed_in_odd_out(self):
+        """Test a particular usage case."""
+        image = np.zeros((6, 5))
+        image[0:3, 0:3] = 1
+        pupil_center_x = 1
+        pupil_center_y = 1
+        pixel_count_across = 7
+        cropped_image = offcenter_crop(image, pixel_count_across,
+                                       pupil_center_y, pupil_center_x)
+        answer = pad_crop(np.ones((3, 3)), (7, 7))
+        self.assertTrue(np.sum(np.abs(cropped_image - answer)) == 0)
+
+    def test_mixed_in_odd_out_change_center(self):
+        """Test a particular usage case."""
+        image = np.zeros((5, 5))
+        image[0:3, 2::] = 1
+        pupil_center_x = 3
+        pupil_center_y = 1
+        pixel_count_across = 7
+        cropped_image = offcenter_crop(image, pixel_count_across,
+                                       pupil_center_y, pupil_center_x)
+        answer = pad_crop(np.ones((3, 3)), (7, 7))
+        self.assertTrue(np.sum(np.abs(cropped_image - answer)) == 0)
+
+    def test_even_in_odd_out(self):
+        """Test a particular usage case."""
+        image = np.zeros((6, 10))
+        image[3, 3] = 1
+        pupil_center_x = 3
+        pupil_center_y = 3
+        pixel_count_across = 7
+        cropped_image = offcenter_crop(image, pixel_count_across,
+                                       pupil_center_y, pupil_center_x)
+        answer = pad_crop(np.ones((1, 1)), (7, 7))
+        self.assertTrue(np.sum(np.abs(cropped_image - answer)) == 0)
+
+    def test_even_in_even_out(self):
+        """Test a particular usage case."""
+        image = np.zeros((6, 6))
+        image[0:2, 0:2] = 1
+        pupil_center_x = 1
+        pupil_center_y = 1
+        pixel_count_across = 4
+        cropped_image = offcenter_crop(image, pixel_count_across,
+                                       pupil_center_y, pupil_center_x)
+        answer = pad_crop(np.ones((2, 2)), (4, 4))
+        self.assertTrue(np.sum(np.abs(cropped_image - answer)) == 0)
+
+    def test_even_in_even_out_extend_past_input_array(self):
+        """Test a particular usage case."""
+        image = np.zeros((6, 6))
+        image[4::, 4::] = 1
+        pupil_center_x = 5
+        pupil_center_y = 5
+        pixel_count_across = 4
+        cropped_image = offcenter_crop(image, pixel_count_across,
+                                       pupil_center_y, pupil_center_x)
+        answer = pad_crop(np.ones((2, 2)), (4, 4))
+        self.assertTrue(np.sum(np.abs(cropped_image - answer)) == 0)
+
+    def fully_outside_input_array(self):
+        """Test a particular usage case."""
+        arrayIn = np.eye(4)
+        cropped_image = offcenter_crop(arrayIn, 10, -20, 20)
+        answer = np.zeros((10, 10))
+        self.assertTrue(np.sum(np.abs(cropped_image - answer)) == 0)
 
 
 if __name__ == '__main__':
